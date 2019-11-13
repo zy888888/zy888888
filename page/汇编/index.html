@@ -32,7 +32,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;images&#x2F;%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E6%8D%AE%E5%9C%A8%E4%BB%80%E4%B9%88%E5%9C%B0%E6%96%B9.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;images&#x2F;flag%E5%AF%84%E5%AD%98%E5%99%A8%E5%90%84%E4%BD%8D%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;images&#x2F;%E7%A8%8B%E5%BA%8F%E7%8A%B6%E6%80%81%E5%AD%97.png">
-<meta property="og:updated_time" content="2019-11-13T05:19:33.455Z">
+<meta property="og:updated_time" content="2019-11-13T07:36:42.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;images&#x2F;CPU%E4%BB%8E%E5%86%85%E5%AD%98%E5%8D%95%E5%85%83%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%87%E7%A8%8B.png">
   
@@ -89,7 +89,7 @@
   
   <div class="article-meta">
     <a href="/page/%E6%B1%87%E7%BC%96/" class="article-date">
-  <time datetime="2019-11-13T05:19:33.459Z" itemprop="datePublished">2019-11-13</time>
+  <time datetime="2019-11-13T07:36:42.405Z" itemprop="datePublished">2019-11-13</time>
 </a>
     
     
@@ -316,7 +316,7 @@
 <h1 id="9-转移指令"><a href="#9-转移指令" class="headerlink" title="9 转移指令"></a>9 转移指令</h1><h2 id="9-1-操作符offset"><a href="#9-1-操作符offset" class="headerlink" title="9.1 操作符offset"></a>9.1 操作符offset</h2><ul>
 <li>可以修改IP,或同时修改CS和IP的指令统称为转移指令。</li>
 <li>8086转移行为有以下几类。<br>① 只修改IP时，称为<strong>段内转移</strong>，比如：jmp ax。<br>② 同时修改CSheIP时，称为<strong>段间转移(jmp far ptr 标号)</strong>,比如：jmp 1000:0</li>
-<li>由于转移指令对IP的修改范围不同，段内转移又分为：短转移和近转移。<br>① 短转移(jmp short 标号)IP的修改范围位 -128<del>127.<br>② 近转移(jmp near ptr 标号)IP的修改范围位 -32768</del>32767。</li>
+<li>由于转移指令对IP的修改范围不同，段内转移又分为：短转移和近转移。<br>① 短转移(jmp short 标号)IP的修改范围位 -128 ~ 127.<br>② 近转移(jmp near ptr 标号)IP的修改范围位 -32768 ~ 32767。</li>
 <li>8086CPU的转移指令分为以下几类<ol>
 <li>无条件转移指令(如:jmp)</li>
 <li>条件转移指令</li>
@@ -329,7 +329,7 @@
 <li>内存中jmp指令的两种格式：<br>1.jmp word ptr 内存单元地址(段内转移)<br>  功能: 从内存单元地址处开始存放着一个字，是转移的偏移地址。内存单元地址可用寻址方式的任意格式给出。<br>2.jmp dword ptr 内存单元地址(段间转移)<br>  功能: 从内存单元地址处开始存放着两个字，高地址处的字是转移的目的段地址，低地址处的是转移的目的偏移地址。(CS) = (内存单元地址 + 2)、(IP) = (内存单元地址)。</li>
 </ul>
 <h2 id="9-2-jcxz指令"><a href="#9-2-jcxz指令" class="headerlink" title="9.2 jcxz指令"></a>9.2 jcxz指令</h2><ul>
-<li>jcxz指令位有条件转移指令，所有的有条件转移指令都是短转移，在对应的机器码中包含转移的位移，而不是目的地址，对IP的修改范围都位 -128<del>127。<br>格式：jcxz标号(如果(cx)=0，转移到标号处执行)<br>操作： 当(cx)=0时，(IP)=(IP) + 8位位移；<br>8位位移 = 标号处的地址 - jcxz指令后的第一个字节的地址。<br>8位位移的范围位-128</del>127，用补码表示。<br>8位位移由编译程序在编译时算出。<br>当 (cx) ≠ 0时，什么也不做(程序向下执行)。</li>
+<li>jcxz指令位有条件转移指令，所有的有条件转移指令都是短转移，在对应的机器码中包含转移的位移，而不是目的地址，对IP的修改范围都位 -128 ~ 127。<br>格式：jcxz标号(如果(cx)=0，转移到标号处执行)<br>操作： 当(cx)=0时，(IP)=(IP) + 8位位移；<br>8位位移 = 标号处的地址 - jcxz指令后的第一个字节的地址。<br>8位位移的范围位-128~127，用补码表示。<br>8位位移由编译程序在编译时算出。<br>当 (cx) ≠ 0时，什么也不做(程序向下执行)。</li>
 </ul>
 <h2 id="9-3-loop指令"><a href="#9-3-loop指令" class="headerlink" title="9.3 loop指令"></a>9.3 loop指令</h2><ul>
 <li>loop指令为循环指令，所有的指令都是短转移，在对应的机器码中包含转移的位移，而不是目的地址，对IP的修改范围都位 -128~127。<br>格式： loop 标号 ((cx) = (cx) -1，如果 (cx) ≠ 0，转移到标号处执行)<br>操作： (1) (cx) = (cx) -1; (2) 如果(cx) ≠ 0,(IP) = (IP) + 8位位移。<br>8位位移 = 标号处的地址 loop 指令后的第一个字节的地址。<br>如果 (cx) = 0，什么也不做(程序向下执行)。</li>
@@ -414,11 +414,11 @@
       <ul>
         
           <li>
-            <a href="/page/MarkDown%E6%95%99%E7%A8%8B/">MarkDown教程</a>
+            <a href="/page/%E6%B1%87%E7%BC%96/">汇编</a>
           </li>
         
           <li>
-            <a href="/page/%E6%B1%87%E7%BC%96/">汇编</a>
+            <a href="/page/MarkDown%E6%95%99%E7%A8%8B/">MarkDown教程</a>
           </li>
         
       </ul>

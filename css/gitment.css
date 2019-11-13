@@ -4,7 +4,6 @@
     line-height: 1.5;
     color: #333;
     word-wrap: break-word;
-    display:none;
   }
   
   .gitment-container * {
@@ -52,7 +51,6 @@
   
   .gitment-root-container {
     margin: 19px 0;
-    display:none;
   }
   
   .gitment-header-container {
